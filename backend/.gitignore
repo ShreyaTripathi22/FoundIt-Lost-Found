@@ -1,0 +1,52 @@
+# =========================
+# Node / NPM
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Environment variables
+# =========================
+.env
+config.env
+
+# =========================
+# Uploads / User files
+# =========================
+uploads/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# OS / Editor files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Build output (if added later)
+# =========================
+dist/
+build/
+
+# =========================
+# Coverage / Testing
+# =========================
+coverage/
+
+# =========================
+# Temporary / Cache
+# =========================
+.tmp/
+.cache/
