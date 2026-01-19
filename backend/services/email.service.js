@@ -33,3 +33,31 @@ FoundIt Team
 
   await transporter.sendMail(mailOptions);
 };
+
+export const sendClaimEmailService = async ({
+  finderEmail,
+  itemName,
+  claimerName,
+  claimerEmail,
+}) => {
+  const emailContent = `
+Hi,
+
+Someone has requested to claim your found item: "${itemName}"
+
+Claimer Details:
+Name: ${claimerName}
+Email: ${claimerEmail}
+
+Please contact them to proceed.
+
+— FoundIt Team
+`;
+
+  await transporter.sendMail({
+    from: `"FoundIt" <${process.env.EMAIL_USER}>`,
+    to: finderEmail,
+    subject: `Claim request for ${itemName}`,
+    text: emailContent,
+  });
+};

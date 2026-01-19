@@ -1,5 +1,6 @@
 import { getDb } from "../config/db.js";
 import { ObjectId } from "mongodb";
+import { runSmartMatching } from "../services/match.service.js";
 
 export const getAllLostItems = async (req, res, next) => {
   try {
@@ -28,6 +29,8 @@ export const createLostItem = async (req, res, next) => {
 
     // 👈 smart matching will be called here later
     // runSmartMatching(newLostItem);
+    await runSmartMatching(newLostItem, "LOST");
+
 
     res.status(201).json({ message: "Lost item reported" });
   } catch (err) {

@@ -37,13 +37,22 @@ const Login = () => {
       return;
     }
     
-    let response = await verifyUser(formData)
-    if(response){
-      //console.log('Login form submitted:', formData);
+    // let response = await verifyUser(formData)
+    // if(response){
+    //   //console.log('Login form submitted:', formData);
+    //   navigate("/");
+    //   sessionStorage.setItem("User", response)
+    // }else{
+    //   alert("Login failed", response)
+    // }
+
+    const result = await verifyUser(formData);
+
+    if (result) {
+      sessionStorage.setItem("User", result.token);
       navigate("/");
-      sessionStorage.setItem("User", response)
-    }else{
-      alert("Login failed")
+    } else {
+      setLoginError(result);
     }
 
 

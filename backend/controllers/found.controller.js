@@ -1,5 +1,6 @@
 import { getDb } from "../config/db.js";
 import { ObjectId } from "mongodb";
+import { runSmartMatching } from "../services/match.service.js";
 
 export const getAllFoundItems = async (req, res, next) => {
   try {
@@ -29,6 +30,7 @@ export const createFoundItem = async (req, res, next) => {
 
     // 👈 smart matching later
     // runSmartMatching(newFoundItem);
+    await runSmartMatching(newFoundItem, "FOUND");
 
     res.status(201).json({ message: "Found item posted" });
   } catch (err) {

@@ -3,7 +3,13 @@ import { getDb } from "../config/db.js";
 export const registerUser = async (req, res, next) => {
   try {
     const db = getDb();
-    const { username, email, password } = req.body;
+    const { name, email, password } = req.body;
+
+    console.log("REGISTER BODY:", req.body);
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "All fields required" });
+    }
 
     const existingUser = await db
       .collection("Users")
@@ -14,13 +20,13 @@ export const registerUser = async (req, res, next) => {
     }
 
     await db.collection("Users").insertOne({
-      username,
+      name,          // ✅ fixed
       email,
-      password, // (hash later)
+      password,      // hash later
       createdAt: new Date(),
     });
 
-    res.status(201).json({ message: "User registered successfully" });
+    res.status(201).json({ success: true, message: "User registered successfully" });
   } catch (err) {
     next(err);
   }
